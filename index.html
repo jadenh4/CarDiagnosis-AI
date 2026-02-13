@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CarDiagnosis AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="card">
+
+        <div class="header">
+            <h1>CarDiagnosis AI</h1>
+            <p>Intelligent Vehicle Diagnostic Assistant</p>
+        </div>
+
+        <form method="POST">
+
+            <div class="section-title">Select Vehicle Symptoms</div>
+
+            <div class="symptoms-grid">
+                <label class="symptom">
+                    <input type="checkbox" name="symptoms" value="engine_misfire">
+                    <span>Engine Misfire</span>
+                </label>
+
+                <label class="symptom">
+                    <input type="checkbox" name="symptoms" value="overheating">
+                    <span>Overheating</span>
+                </label>
+
+                <label class="symptom">
+                    <input type="checkbox" name="symptoms" value="battery_dead">
+                    <span>Battery Failure</span>
+                </label>
+
+                <label class="symptom">
+                    <input type="checkbox" name="symptoms" value="rough_idle">
+                    <span>Rough Idle</span>
+                </label>
+            </div>
+
+            <button type="submit">Run Smart Diagnosis</button>
+        </form>
+
+        {% if result %}
+        <div class="result-card">
+            <h2>Diagnosis Report</h2>
+
+            <div class="result-item">
+                <span class="label">Detected Issue</span>
+                <span class="value">{{ result.issue }}</span>
+            </div>
+
+            <div class="result-item">
+                <span class="label">Recommended Action</span>
+                <span class="value">{{ result.solution }}</span>
+            </div>
+
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width: {{ result.confidence }}%;">
+                    {{ result.confidence }}%
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+</html>
